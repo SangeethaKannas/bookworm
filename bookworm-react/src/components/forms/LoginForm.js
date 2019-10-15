@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Button, Label } from 'semantic-ui-react'
+import { Form, Button, Label, Message } from 'semantic-ui-react'
 import InlineError from '../messages/InlineError'
 
 class LoginForm extends React.Component {
@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
 
         if(!data.password) errors.password = "Can't be blank"
         if(!data.email) errors.email = "Can't be blank"
-        return errors;  
+        return errors; 
     }
 
     onSubmit = () => {
@@ -27,11 +27,13 @@ class LoginForm extends React.Component {
         this.setState({errors})
         
         if(Object.keys(errors).length === 0) {
+            this.setState({ loading: true })
             this.props.submit(this.state.data)
+            .catch( error => this.setState({ errors: error.response.data.errors, loading: false }))
         } else {
             //TODO: show global message for errors,   disable login button
             // console.log(errors)        
-        }        
+        }
     }
 
     onChange = (e) => {
@@ -39,11 +41,16 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        const { data, errors } = this.state
-        console.log(errors)
+        const { data, errors, loading } = this.state
+        
         return (
-            <Form onSubmit={this.onSubmit}>
-                <Form.Field>
+            <Form onSubmit={this.onSubmit} loading={loading}>
+                { errors.global && <Message negative>
+                    <Message.Header>Something went wrong</Message.Header>
+                        <p>{errors.global}</p>
+                    </Message>
+                }
+                <Form.Field error={!!errors.email}>
                     <Label htmlFor="email">Email</Label>
                     <input type="email"
                     id="email"
@@ -54,7 +61,7 @@ class LoginForm extends React.Component {
                     />                    
                     {errors.email && <InlineError text={errors.email}/>}    
                 </Form.Field>                
-                <Form.Field>
+                <Form.Field error={!!errors.email}>
                     <Label htmlFor="password">Password</Label>
                     <input type="password"
                     id="password"
