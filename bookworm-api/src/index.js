@@ -2,11 +2,15 @@ import express from 'express'
 import path from 'path'
 import mongoose from 'mongoose'
 
-import bodyParser from 'body-parser'
+import bodyparser from 'body-parser'
 import auth from './routes/auth'
 
+import dotenv from 'dotenv'
+
 const app = express()
-mongoose.connect("mongodb://localhost/bookworm", {useMongoClient: true})
+
+dotenv.config()
+mongoose.connect(, {useMongoClient: true})
 
 app.use('/api/auth', auth)
 app.use()

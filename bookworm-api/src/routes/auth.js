@@ -7,10 +7,9 @@ router.post('/', (request, response) => {
     const { credentials } = request.body
     User.findOne({email: credentials.email}).then(user => {
         if(user && user.isValidPassword(credentials.password)) {
-            response.json({success: true })
+            response.json({loginJWT: user.generateJWT() })
         } else {
-            response.status(400).json({errors: { global: "Invalid Credentials" } } )
+            response.status(400).json({errors: { global: } } )
         }
     })
 })
-
