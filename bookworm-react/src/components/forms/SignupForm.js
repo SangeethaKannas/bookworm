@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Form, Button, Label, Message } from 'semantic-ui-react'
 import InlineError from '../messages/InlineError'
+import isEmail from 'validator/lib/isEmail'
 
 class SignupForm extends React.Component {
     state = {
@@ -17,7 +18,7 @@ class SignupForm extends React.Component {
         const errors = {}
 
         if(!data.password) errors.password = "Can't be blank"
-        if(!data.email) errors.email = "Can't be blank"
+        if(!isEmail(data.email)) errors.email = "Can't be blank"
         return errors; 
     }
 
@@ -73,7 +74,7 @@ class SignupForm extends React.Component {
                    
                     {errors.password && <InlineError text={errors.password}/>}
                 </Form.Field>                
-                <Button primary>Login</Button>
+                <Button primary>Signup</Button>
             </Form>
         )
     }
