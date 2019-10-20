@@ -1,0 +1,18 @@
+import express from 'express'
+import User from '../models/User'
+import parseErrors from '../utils/parseErrors'
+const router = express.Router()
+
+router.post('/', (req, res) => {
+    const { email, password } = req.body.user
+    const user = new User( { email } )
+    
+    user.setPassword(password)
+    user.save()
+    .then(userRecord =>  {         
+       res.status(200).json({user: userRecord.toAuthJSON() })
+    })
+    .catch(error => res.status(400).json( { errors: parseErrors(error.errors) } ) )
+})
+
+export default router
