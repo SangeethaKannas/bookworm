@@ -42,8 +42,7 @@ class LoginForm extends React.Component {
 
     render() {
         const { data, errors, loading } = this.state
-        
-        
+               
         return (
             <Form onSubmit={this.onSubmit} loading={loading}>
                 { errors.global && <Message negative>
@@ -60,7 +59,7 @@ class LoginForm extends React.Component {
                     value={data.email}
                     onChange={this.onChange} 
                     />                    
-                    {errors.email && <InlineError text={errors.email}/>}    
+                    {errors.email && <InlineError text={errors.email}/>}
                 </Form.Field>                
                 <Form.Field error={!!errors.email}>
                     <Label htmlFor="password">Password</Label>

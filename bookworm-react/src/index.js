@@ -19,7 +19,7 @@ const store = createStore(
 
 if(localStorage.bookwormJWT) {
     const payload = decode(localStorage.bookwormJWT)
-    const user = {token: localStorage.bookwormJWT, email: payload.email,  confirmed: payload.confirmed}
+    const user = {token: localStorage.bookwormJWT, email: payload.email, confirmed: payload.confirmed}
     store.dispatch(userLoggedIn(user))
 }
 
