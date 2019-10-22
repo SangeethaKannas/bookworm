@@ -1,5 +1,5 @@
-import { React } from "react";
-import { PropTypes } from "prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 import { connect } from 'react-redux'
 import { Message, Icon } from "semantic-ui-react";
 import { Link } from 'react-router-dom'
@@ -12,9 +12,10 @@ class ConfirmationPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.confirm(this.props.match.param.token)
+        console.log(this.props.match)
+        this.props.confirm(this.props.match.params.token)
         .then(() => this.setState({loading: false, success: true}))
-        .catch(()=>this.setState({loading: false, success: false}))
+        .catch(() => this.setState({loading: false, success: false}))
     }
 
     render() {
@@ -38,10 +39,10 @@ class ConfirmationPage extends React.Component {
                 {!loading && success && (
                     <Message success icon>
                         <Icon name="checkmark" />
-                        <Message.content>
+                        <Message.Content>
                             <Message.Header>Thank You. Your Account has been verified.</Message.Header>
                             <Link to="/dashboard" >Go to your Dashboard</Link>
-                        </Message.content>
+                        </Message.Content>
                     </Message>
                 )}
                     
@@ -68,4 +69,4 @@ ConfirmationPage.propTypes = {
      })
 }
 
-export default connect(null, {confirm})(ConfirmationPage)
+export default connect(null, {confirm} )(ConfirmationPage)

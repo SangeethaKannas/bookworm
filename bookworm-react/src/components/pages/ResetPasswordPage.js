@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from "prop-types"
 import { connect } from 'react-redux'
 import { Message } from 'semantic-ui-react'
-import { validateToken } from '../../actions/auth'
+import { validateToken } from '../../actions/Auth'
 
 class ResetPasswordPage extends React.Component {
     state = {

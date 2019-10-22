@@ -13,7 +13,6 @@ app.use(bodyParser.json())
 
 dotenv.config()
 mongoose.Promise = Promise
-console.log(process.env.MONGODB_URL)
 mongoose.connect('mongodb://localhost/bookworm')
 
 app.use('/api/auth', auth)
@@ -23,4 +22,6 @@ app.get('/*', (request, response) => {
     response.sendFile(path.join(__dirname, 'index.html'))
 })
 
-app.listen(8080, () => console.log('Running on localhost:8080'))
+const PORT = 8080
+
+app.listen(PORT, () => console.log('Running on localhost:' + PORT))

@@ -28,7 +28,8 @@ router.post('/confirmation', (req, res) => {
 })
 
 router.post('/reset_password_request', (req, res) => {
-    User.findOne({email: req.body.email})
+    console.log(req.body.email.email)
+    User.findOne({email: req.body.email.email})
     .then(user => { 
         if( user) {
             sendResetPasswordEmail(user)

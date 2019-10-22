@@ -4,13 +4,13 @@ const from = '"Bookworm"  <info@bookworm.com>'
 
 function setup() {
     return nodemailer.createTransport({
-        host: "",
+        host: "smtp.mailtrap.io",
         port: 2525,
         auth: {
-            user: '',
-            pass: ''
+          user: "5f625fb9d2fdde",
+          pass: "24126d02b8b732"
         }
-    })
+      });
 }
 
 export function sendConfirmationEmail(user) {
@@ -28,7 +28,7 @@ export function sendConfirmationEmail(user) {
     transport.sendMail(email)
 }
 
-export function sendResetPasswordEmail(email) {
+export function sendResetPasswordEmail(user) {
     const transport = setup()
     
     const email = {
@@ -40,5 +40,6 @@ export function sendResetPasswordEmail(email) {
             ${user.generateResetPasswordLink()}
         `
     }
+    
     transport.sendMail(email)   
 }

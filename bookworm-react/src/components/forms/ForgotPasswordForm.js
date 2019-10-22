@@ -24,7 +24,7 @@ class ForgotPasswordForm extends React.Component {
     onSubmit = e => {
         e.preventDefault()
         const errors = this.validate(this.state.data)
-        this.setState({errors})
+        this.setState({ errors })
         if(Object.keys(errors).length === 0) {
             this.setState({loading: true})
             this.props
@@ -69,4 +69,4 @@ ForgotPasswordForm.propTypes = {
     submit: PropTypes.func.isRequired
 }
 
-export default ForgotPasswordForm
+export default connect(null, { resetPasswordRequest })(ForgotPasswordForm)

@@ -6,5 +6,6 @@ export default function(errors) {
     _.forEach(errors, ( val, key) => {
         result[key] = val.message
     })
+    console.log(result)
     return result
 }

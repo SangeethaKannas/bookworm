@@ -20,7 +20,7 @@ schema.methods.setPassword = function setPassword(password) {
     this.passwordHash = bcrypt.hashSync(password, 10)
 }
 
-schema.methods.setConfirmation = function setConfirmation(password) {
+schema.methods.setConfirmationToken = function setConfirmationToken(password) {
     this.confirmationToken = this.generateJWT()
 }
 
@@ -34,19 +34,20 @@ schema.methods.generateResetPasswordLink = function generateResetPasswordLink(){
 
 schema.methods.generateJWT = function generateJWT() {
     return jwt.sign( 
-    {
-        email: this.email,
-        confirmed: this.confirmed
-    },
-    process.env.JWT_SECRET )
+        {
+            email: this.email,
+            confirmed: this.confirmed
+        },
+        process.env.JWT_SECRET 
+    )
 }
 
 schema.methods.generateResetPasswordToken = function generateJWT() {
     return jwt.sign( {
-        _id: this._id
-    }, 
-    process.env.JWT_SECRET,
-    { expiresIn : "1s" }
+            _id: this._id
+        }, 
+        process.env.JWT_SECRET,
+        { expiresIn : "2m" }
     )
 }
 

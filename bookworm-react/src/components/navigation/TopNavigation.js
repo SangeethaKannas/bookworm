@@ -1,17 +1,27 @@
-import { React } from "react";
-import { Menu, Dropdown } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { PropTypes } from "prop-types";
+import { connect } from 'react-redux'
+import { Menu, Dropdown, Image } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
+import gravatarUrl from 'gravatar-url'
+import { logout } from '../../actions/Auth'
 
-const TopNavigation = () => (
-
-    <Menu secondary pointing>
-        <Menu.item as={Link} to="/dashboard"> Dashboard</Menu.item>
-        <Menu.Menu position="right">
-            <Dropdown>
-Hi
-            </Dropdown>
-        </Menu.Menu>
-    </Menu>
+const TopNavigation = ({ user, logout }) => (    
+<div>Hi</div>
 )
 
-export default TopNavigation
+TopNavigation.propTypes = {
+    user: PropTypes.shape ({
+        email: PropTypes.string.isRequired
+    }).isRequired,
+    logout: PropTypes.func.isRequired
+}
+
+
+function mapStateToProps(state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, { logout} )(TopNavigation)
