@@ -7,7 +7,17 @@ import gravatarUrl from 'gravatar-url'
 import { logout } from '../../actions/Auth'
 
 const TopNavigation = ({ user, logout }) => (    
-<div>Hi</div>
+    <Menu secondary pointing>
+        <Menu.item as={Link} to="/dashboard"> Dashboard</Menu.item>
+        <Menu.Menu position="right">
+            <Dropdown trigger={ <Image avatar src={gravatarUrl('test@test.com')} />}>
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => logout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+        </Menu.Menu>
+    </Menu>
+
 )
 
 TopNavigation.propTypes = {
