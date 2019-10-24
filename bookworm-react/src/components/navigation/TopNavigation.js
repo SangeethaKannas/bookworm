@@ -4,20 +4,19 @@ import { connect } from 'react-redux'
 import { Menu, Dropdown, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import gravatarUrl from 'gravatar-url'
-import { logout } from '../../actions/Auth'
+import * as  actions from '../../actions/Auth'
 
-const TopNavigation = ({ user, logout }) => (    
+const TopNavigation = ({ user, logout }) => ( 
     <Menu secondary pointing>
-        <Menu.item as={Link} to="/dashboard"> Dashboard</Menu.item>
+        <Menu.Item as={Link} to="/dashboard"> Dashboard</Menu.Item>
         <Menu.Menu position="right">
-            <Dropdown trigger={ <Image avatar src={gravatarUrl('test@test.com')} />}>
+            <Dropdown trigger={ <Image avatar src={gravatarUrl(user.email)} /> } >                
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => logout}>Logout</Dropdown.Item>
+                    <Dropdown.Item onClick={() => logout}>Logout</Dropdown.Item>                
                 </Dropdown.Menu>
             </Dropdown>
         </Menu.Menu>
     </Menu>
-
 )
 
 TopNavigation.propTypes = {
@@ -27,11 +26,10 @@ TopNavigation.propTypes = {
     logout: PropTypes.func.isRequired
 }
 
-
 function mapStateToProps(state) {
     return {
         user: state.user
     }
 }
 
-export default connect(mapStateToProps, { logout} )(TopNavigation)
+export default connect(mapStateToProps, { logout: actions.logout } )(TopNavigation)

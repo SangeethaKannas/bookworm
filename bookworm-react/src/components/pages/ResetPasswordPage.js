@@ -16,11 +16,12 @@ class ResetPasswordPage extends React.Component {
 
     render() {
         const { loading, success} = this.state
-
+        const token = this.props.match.params.token
+        
         return (
             <div>
                 {loading && <Message >Loading</Message>}
-                {!loading && success && <Message>Form</Message>}
+                {!loading && success && <ResetPasswordForm submit={this.submit} token={token} />}
                 {!loading && !success && <Message>Invalid Token</Message>}
             </div>
         )
@@ -36,4 +37,4 @@ ResetPasswordPage.propTypes = {
     })
 }
 
-export default connect(null, validateToken)(ResetPasswordPage)
+export default connect(null, validateToken)(ResetPasswordPage)  

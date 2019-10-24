@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 
 import auth from './routes/auth'
 import users from './routes/users'
+import books from './routes/books'
 
 const app = express()
 app.use(bodyParser.json())
@@ -17,6 +18,7 @@ mongoose.connect('mongodb://localhost/bookworm')
 
 app.use('/api/auth', auth)
 app.use('/api/users', users)
+app.use('/api/books', books)
 
 app.get('/*', (request, response) => {
     response.sendFile(path.join(__dirname, 'index.html'))

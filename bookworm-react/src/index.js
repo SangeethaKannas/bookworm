@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom'
 import "semantic-ui-css/semantic.min.css"
 import {createStore, applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
 import decode from 'jwt-decode'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker'
+
+import App from './App'
 import rootReducer from './rootReducer'
-import { userLoggedIn } from './actions/Auth';
+import { userLoggedIn } from './actions/Auth'
+import setAuthorizationHeaader from './utils/setAuthorizationHeader'
 
 const store = createStore(
     rootReducer, 
@@ -20,6 +22,7 @@ const store = createStore(
 if(localStorage.bookwormJWT) {
     const payload = decode(localStorage.bookwormJWT)
     const user = {token: localStorage.bookwormJWT, email: payload.email, confirmed: payload.confirmed}
+    setAuthorizationHeaader(localStorage.bookwormJWT)
     store.dispatch(userLoggedIn(user))
 }
 
