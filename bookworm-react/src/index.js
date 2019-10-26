@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { BrowserRouter, Route } from 'react-router-dom'
-import "semantic-ui-css/semantic.min.css"
 import {createStore, applyMiddleware} from 'redux'
 import { Provider } from 'react-redux'
 import decode from 'jwt-decode'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import * as serviceWorker from './serviceWorker'
+import "semantic-ui-css/semantic.min.css"
 
 import App from './App'
 import rootReducer from './rootReducer'

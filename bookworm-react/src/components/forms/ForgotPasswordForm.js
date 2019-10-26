@@ -13,12 +13,12 @@ class ForgotPasswordForm extends React.Component {
             email: ''
         },
         loading: false,
-        errors: {}        
+        errors: {}   
     }
 
     onChange = e => this.setState({
         ...this.setState,
-        data: {...this.state.data, [e.target.name] :e.target.value }
+        data: {...this.state.data, [e.target.name]: e.target.value }
     })
 
     onSubmit = e => {
@@ -38,7 +38,7 @@ class ForgotPasswordForm extends React.Component {
 
     validate = data => {
         const errors = {}
-        if(!isEmail(data.email)) errors.email = 'Invalid Email'
+        if( !isEmail(data.email) ) errors.email = 'Invalid Email'
         return errors
     }
 
@@ -69,4 +69,4 @@ ForgotPasswordForm.propTypes = {
     submit: PropTypes.func.isRequired
 }
 
-export default connect(null, { resetPasswordRequest })(ForgotPasswordForm)
+export default connect(null, { resetPasswordRequest })(ForgotPasswordForm)  

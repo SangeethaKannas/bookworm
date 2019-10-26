@@ -47,7 +47,7 @@ schema.methods.generateResetPasswordToken = function generateJWT() {
             _id: this._id
         }, 
         process.env.JWT_SECRET,
-        { expiresIn : "2m" }
+        { expiresIn : "1h" }
     )
 }
 

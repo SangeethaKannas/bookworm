@@ -4,11 +4,11 @@ const from = '"Bookworm"  <info@bookworm.com>'
 
 function setup() {
     return nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
         auth: {
-          user: "5f625fb9d2fdde",
-          pass: "24126d02b8b732"
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
         }
       });
 }

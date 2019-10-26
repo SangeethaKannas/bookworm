@@ -28,8 +28,10 @@ class LoginForm extends React.Component {
         
         if(Object.keys(errors).length === 0) {
             this.setState({ loading: true })
+            
             this.props.submit(this.state.data)
-            .catch( error => this.setState({ errors: error.response.data.errors, loading: false }))
+            .catch( error => { 
+                this.setState({ errors: error.response.data.errors, loading: false })})
         } else {
             //TODO: show global message for errors,   disable login button
             // console.log(errors)        
@@ -61,7 +63,7 @@ class LoginForm extends React.Component {
                     />                    
                     {errors.email && <InlineError text={errors.email}/>}
                 </Form.Field>                
-                <Form.Field error={!!errors.email}>
+                <Form.Field error={!!errors.password}>
                     <Label htmlFor="password">Password</Label>
                     <input type="password"
                     id="password"

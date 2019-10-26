@@ -12,7 +12,7 @@ const TopNavigation = ({ user, logout }) => (
         <Menu.Menu position="right">
             <Dropdown trigger={ <Image avatar src={gravatarUrl(user.email)} /> } >                
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => logout}>Logout</Dropdown.Item>                
+                    <Dropdown.Item onClick={() => logout()}>Logout</Dropdown.Item>                
                 </Dropdown.Menu>
             </Dropdown>
         </Menu.Menu>

@@ -46,6 +46,8 @@ class SearchBookForm extends React.Component {
     this.props.onBookSelect( this.state.books[data.value] )
   }
 
+  addBook = () => console.log('Adding Book')
+
   render() {
       return (
         <Form>

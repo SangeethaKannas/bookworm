@@ -14,6 +14,10 @@ class SignupForm extends React.Component {
         errors: {}
     }
 
+    onChange = (e) => {
+        this.setState({data:{...this.state.data, [e.target.name]:e.target.value}})
+    }
+
     validate = (data) => {
         const errors = {}
 
@@ -35,10 +39,6 @@ class SignupForm extends React.Component {
             //TODO: show global message for errors,   disable login button
             // console.log(errors)        
         }
-    }
-
-    onChange = (e) => {
-        this.setState({data:{...this.state.data, [e.target.name]:e.target.value}})
     }
 
     render() {
