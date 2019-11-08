@@ -1,0 +1,20 @@
+{
+  "name": "bookworm",
+  "version": "1.0.0",
+  "description": "Book worm",
+  "main": "server.js",
+  "scripts": {
+    "start":"concurrently \"cd bookworm-api && npm start\" \"cd bookworm-react && npm start\" ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SangeethaKannas/bookworm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SangeethaKannas/bookworm/issues"
+  },
+  "homepage": "https://github.com/SangeethaKannas/bookworm#readme"
+}

@@ -9,21 +9,28 @@ import auth from './routes/auth'
 import users from './routes/users'
 import books from './routes/books'
 
+//Global Variables
 const app = express()
-app.use(bodyParser.json())
+const PORT = process.env.port || 8080
+const log = console.log
+
+mongoose.Promise = Promise
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/bookworm')
 
 dotenv.config()
-mongoose.Promise = Promise
-mongoose.connect('mongodb://localhost/bookworm')
 
+app.use(bodyParser.json())
 app.use('/api/auth', auth)
 app.use('/api/users', users)
 app.use('/api/books', books)
 
-app.get('/*', (request, response) => {
-    response.sendFile(path.join(__dirname, 'index.html'))
-})
+if(process.env.NODE_ENV === 'production') {
+    app.use(express.static( 'client/build' ))
 
-const PORT = 8080
+    app.get('/*', (request, response) => {
+        response.sendFile(path.join(__dirname, '..', 'bookworm-react', 'build', 'index.html'))
+    })
+    
+}
 
-app.listen(PORT, () => console.log('Running on localhost:' + PORT))
+app.listen(PORT, () => log('Running on localhost:' + PORT))

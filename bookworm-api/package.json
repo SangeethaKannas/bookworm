@@ -5,7 +5,8 @@
   "license": "MIT",
   "author": "Sangeetha Kanna",
   "scripts": {
-    "start": "nodemon --exec babel-node -- src/index.js "
+    "start": "nodemon --exec babel-node -- src/index.js ",
+    "heroku-postbuild": "cd ../bookworm-react && npm install && npm run build"
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",

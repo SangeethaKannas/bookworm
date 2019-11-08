@@ -106,8 +106,9 @@ class BookForm extends React.Component {
                                 <Form.Field error={!!errors.page}>
                                     <Label htmlFor="">Pages</Label>
                                     <input type="number" id="pages" name="pages"
+                                    disabled={data.pages===undefined}
                                     placeholder="pages"
-                                    value={data.pages}
+                                    value={data.pages !== undefined ? data.pages : "Loading"}
                                     onchange={this.onChangeNumber}
                                     />
                                     {errors.pages && <InlineError text={errors.pages}/>}

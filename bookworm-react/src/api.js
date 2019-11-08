@@ -9,5 +9,9 @@ export default {
         resetPasswordRequest: (email) => axios.post('/api/auth/reset_password_request', email).then(response => response.data.user),
         resetPassword: (data) => axios.post('/api/auth/reset_password', {data}).then(response => response.data.user),
         validateToken: (token) => axios.post('/api/auth/validate_token', {token}).then(response => response.data.user)
+    },
+    books: {
+        fetchAll: ()=> axios.get('/api/books').then(res => res.data.books),
+        createBook: (book)=> axios.post('/api/books').then(res => res.data.book)
     }
 } 
