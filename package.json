@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/SangeethaKannas/bookworm#readme",
   "dependencies": {
-    "auth0-lock": "^11.18.1",
+    "auth0-lock": "^11.21.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "jwt-decode": "^2.2.0",
